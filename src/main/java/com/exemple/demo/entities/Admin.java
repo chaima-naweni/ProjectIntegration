@@ -1,13 +1,15 @@
 package com.exemple.demo.entities;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table
@@ -28,7 +30,9 @@ public class Admin implements Serializable {
 	private String tel;
 	
 
-	
+	  @OneToMany(mappedBy="admin",fetch = FetchType.LAZY)
+		private List<Facture> factures = new ArrayList<Facture>();
+		
 	//zedet constructeur!
 	public Admin(long id, String nom, String password, String email, String adresse, String tel) {
 		super();
